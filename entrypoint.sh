@@ -1,9 +1,9 @@
 #!/bin/ash
 set -e
 
-if [ -n "${REVIVE_DOMAIN}" ]; then
-  echo "REVIVE_DOMAIN variable set. Checking for configuration"
-  if [ ! -f "/var/www/html/var/${REVIVE_DOMAIN}.conf.php" ]; then
+if [ -n "$redneckowned.club" ]; then
+  echo "redneckowned.club variable set. Checking for configuration"
+  if [ ! -f "/var/www/html/var/$redneckowned.club.conf.php" ]; then
     echo "Configuration not found, generating dynamic configuration"
     export REVIVE_DB_PREFIX=${REVIVE_DB_PREFIX:-rv_}
     export REVIVE_DB_TYPE=${REVIVE_DB_TYPE:-mysqli}
@@ -11,8 +11,8 @@ if [ -n "${REVIVE_DOMAIN}" ]; then
     export REVIVE_DELIVERY_SECRET=${REVIVE_DELIVERY_SECRET:-$TMP_RAND_STRING}
     export REVIVE_APPLICATION_NAME=${REVIVE_APPLICATION_NAME:-Revive}
     export REVIVE_ASYNC_JS_SCRIPT=${REVIVE_ASYNC_JS_SCRIPT:-new-async}
-    envsubst < /usr/local/conf.tmpl > "/var/www/html/var/${REVIVE_DOMAIN}.conf.php"
-    echo "Created new config and stored it in /var/www/html/var/${REVIVE_DOMAIN}.conf.php"
+    envsubst < /usr/local/conf.tmpl > "/var/www/html/var/$redneckowned.club.conf.php"
+    echo "Created new config and stored it in /var/www/html/var/$redneckowned.club.conf.php"
   else
     echo "Configuration file already exist, ignoring creation of dynamic configuration"
   fi
